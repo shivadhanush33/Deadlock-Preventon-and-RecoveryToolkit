@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Advanced Fastboot OS Simulation</title>
+ <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+ <div class="header">
+ <div class="logo">FASTBOOT OS v2.1.0</div>
+ <div class="status-bar">
+ <div class="status-item">
+ <div class="status-icon online"></div>
+ <span>DEVICE CONNECTED</span>
+ </div>
+ <div class="status-item">
+ <div class="status-icon online"></div>
+ <span>FASTBOOT MODE</span>
+ </div>
+ <div class="status-item">
+ <div class="status-icon online"></div>
+ <span>USB 3.0</span>
+ </div>
+ </div>
+ </div>
+ 
+ <div class="container">
+ <div class="sidebar">
+ <div class="menu-title">MAIN MENU</div>
+ <div class="menu-item active" data-panel="terminal">Terminal</div>
+ <div class="menu-item" data-panel="device-info">Device 
+Information</div>
+ <div class="menu-item" data-panel="partitions">Partitions</div>
+ <div class="menu-item" data-panel="flash">Flash Tool</div>
+ <div class="menu-item" data-panel="reboot">Reboot Options</div>
+ 
+ <div class="menu-title" style="margin-top: 20px;">CONNECTED 
+DEVICES</div>
+ <div class="menu-item device-item" data-device="1234567890">
+ <span class="device-name">Pixel 6 Pro</span>
+ <span class="device-id">1234567890</span>
+ </div>
+ <div class="menu-item device-item" data-device="abcdef12345">
+ <span class="device-name">OnePlus 9</span>
+ <span class="device-id">abcdef12345</span>
+ </div>
+ </div>
+ 
+ <div class="content">
+ <div class="tabs">
+ <div class="tab active" data-panel="terminal">Terminal</div>
+ <div class="tab" data-panel="device-info">Device Info</div>
+ <div class="tab" data-panel="partitions">Partitions</div>
+ <div class="tab" data-panel="flash">Flash Tool</div>
+ <div class="tab" data-panel="reboot">Reboot</div>
+ </div>
+ 
+ <!-- Terminal Panel -->
+ <div class="terminal" id="terminal-panel">
+ <!-- Terminal output will appear here -->
+ </div>
+ 
+ <!-- Device Info Panel -->
+ <div class="device-panel" id="device-info-panel">
+ <div class="device-info">
+ <h2>Device Information</h2>
+ <table class="info-table">
+ <tr>
+ <th>Property</th>
+ <th>Value</th>
+ </tr>
+ <tr>
+ <td>Manufacturer</td>
+ <td>Google</td>
+ </tr>
+ <tr>
+ <td>Model</td>
+ <td>Pixel 6 Pro</td>
+ </tr>
+ <tr>
+ <td>Serial Number</td>
+ <td>1234567890</td>
+ </tr>
+ <tr>
+ <td>Bootloader Version</td>
+ <td>1.2.3.4</td>
+ </tr>
+ <tr>
+ <td>Baseband Version</td>
+ <td>g5123b-98765</td>
+ </tr>
+ <tr>
+ <td>Product Name</td>
+ <td>raven</td>
+ </tr>
+ <tr>
+ <td>Secure Boot</td>
+ <td>Enabled</td>
+ </tr>
+ <tr>
+ <td>Device State</td>
+ <td>unlocked</td>
+ </tr>
+ </table>
+ </div>
+ 
+ <div class="device-info">
+ <h2>Hardware Information</h2>
+ <table class="info-table">
+ <tr>
+ <th>Component</th>
+ <th>Details</th>
+ </tr>
+ <tr>
+ <td>CPU</td>
+ <td>Google Tensor (2x Cortex-X1, 2x Cortex-A76, 4x Cortex￾A55)</td>
+ </tr>
+ <tr>
+ <td>GPU</td>
+ <td>Mali-G78 MP20</td>
+ </tr>
+ <tr>
+ <td>RAM</td>
+ <td>12GB LPDDR5</td>
+ </tr>
+ <tr>
+ <td>Storage</td>
+ <td>256GB UFS 3.1</td>
+ </tr>
+ <tr>
+ <td>Display</td>
+ <td>6.7" LTPO AMOLED, 3120x1440, 120Hz</td>
+ </tr>
+ <tr>
+ <td>Battery</td>
+ <td>5003mAh</td>
+ </tr>
+ </table>
+ </div>
+ </div>
+ 
+ <!-- Partitions Panel -->
+ <div class="partitions-panel" id="partitions-panel">
+ <h2>Device Partitions</h2>
+ <table class="info-table">
+ <tr>
+ <th>Partition</th>
+ <th>Size</th>
+ <th>Flashable</th>
+ <th>Actions</th>
+ </tr>
+ <tr>
+ <td>boot</td>
+ <td>64MB</td>
+ <td>Yes</td>
+ <td>
+ <button class="form-button small" 
+onclick="showFlashDialog('boot')">Flash</button>
+ <button class="form-button small" 
+onclick="erasePartition('boot')">Erase</button>
+ </td>
+ </tr>
+ <tr>
+ <td>system</td>
+ <td>4.2GB</td>
+ <td>Yes</td>
+ <td>
+ <button class="form-button small" 
+onclick="showFlashDialog('system')">Flash</button>
+ <button class="form-button small" 
+onclick="erasePartition('system')">Erase</button>
+ </td>
+ </tr>
+ <tr>
+ <td>vendor</td>
+ <td>1.8GB</td>
+ <td>Yes</td>
+ <td>
+ <button class="form-button small" 
+onclick="showFlashDialog('vendor')">Flash</button>
+ <button class="form-button small" 
+onclick="erasePartition('vendor')">Erase</button>
+ </td>
+ </tr>
+ <tr>
+ <td>userdata</td>
+ <td>220GB</td>
+ <td>Yes</td>
+ <td>
+ <button class="form-button small" 
+onclick="showFlashDialog('userdata')">Flash</button>
+ <button class="form-button small" 
+onclick="erasePartition('userdata')">Erase</button>
+ </td>
+ </tr>
+ <tr>
+ <td>recovery</td>
+ <td>64MB</td>
+ <td>Yes</td>
+ <td>
+ <button class="form-button small" 
+onclick="showFlashDialog('recovery')">Flash</button>
+ <button class="form-button small" 
+onclick="erasePartition('recovery')">Erase</button>
+ </td>
+ </tr>
+ <tr>
+ <td>cache</td>
+ <td>256MB</td>
+ <td>Yes</td>
+ <td>
+ <button class="form-button small" 
+onclick="showFlashDialog('cache')">Flash</button>
+ <button class="form-button small" 
+onclick="erasePartition('cache')">Erase</button>
+ </td>
+ </tr>
+ </table>
+ </div>
+ 
+ <!-- Flash Panel -->
+ <div class="flash-panel" id="flash-panel">
+ <h2>Flash Tool</h2>
+ <div class="flash-form">
+ <div class="form-group">
+ <label class="form-label">Partition:</label>
+ <select class="form-input" id="flash-partition">
+ <option value="boot">boot</option>
+ <option value="system">system</option>
+ <option value="vendor">vendor</option>
+ <option value="userdata">userdata</option>
+ <option value="recovery">recovery</option>
+ <option value="cache">cache</option>
+ </select>
+ </div>
+ 
+ <div class="form-group">
+ <label class="form-label">Image File:</label>
+ <input type="file" class="form-input" id="flash-file">
+ </div>
+ 
+ <div class="form-group">
+ <label class="form-label">Options:</label>
+ <div>
+ <input type="checkbox" id="flash-force" class="form-input">
+ <label for="flash-force">Force flash (ignore errors)</label>
+ </div>
+ <div>
+ <input type="checkbox" id="flash-wipe" class="form-input">
+ <label for="flash-wipe">Wipe partition before flashing</label>
+ </div>
+ </div>
+ 
+ <button class="form-button" onclick="startFlashing()">Start 
+Flashing</button>
+ </div>
+ 
+ <div class="progress-container" id="flash-progress">
+ <div class="progress-bar">
+ <div class="progress-fill" id="progress-fill"></div>
+ </div>
+ <div class="progress-text" id="progress-text">0%</div>
+ </div>
+ </div>
+ 
+ <!-- Reboot Panel -->
+ <div class="device-panel" id="reboot-panel">
+ <h2>Reboot Options</h2>
+ <div style="display: flex; gap: 15px; margin-top: 20px;">
+ <button class="form-button" style="flex: 1;" 
+onclick="rebootDevice('system')">
+ Reboot to System
+ </button>
+ <button class="form-button" style="flex: 1;" 
+onclick="rebootDevice('bootloader')">
+ Reboot to Bootloader
+ </button>
+ <button class="form-button" style="flex: 1;" 
+onclick="rebootDevice('recovery')">
+ Reboot to Recovery
+ </button>
+ </div>
+ 
+ <div style="margin-top: 30px;">
+ <h3>Advanced Options</h3>
+ <button class="form-button warning" style="margin-top: 10px;" 
+onclick="fastbootContinue()">
+ Continue Boot
+ </button>
+ <button class="form-button error" style="margin-top: 10px;" 
+onclick="fastbootReset()">
+ Factory Reset
+ </button>
+ </div>
+ </div>
+ </div>
+ </div>
+ 
+ <div class="input-area">
+ <div class="prompt">fastboot></div>
+ <input type="text" class="command-input" id="command-input" 
+autofocus>
+ </div>
+ 
+ <div class="toast" id="toast"></div>
+ 
+ <script src="script.js"></script>
+</body>
+</html>
