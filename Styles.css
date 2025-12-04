@@ -1,0 +1,274 @@
+/* CSS Reset */
+* {
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+}
+/* Main Styles */
+body {
+ background-color: #000;
+ color: #0f0;
+ font-family: 'Courier New', monospace;
+ overflow: hidden;
+ height: 100vh;
+ display: flex;
+ flex-direction: column;
+}
+/* Header */
+.header {
+ padding: 10px 20px;
+ border-bottom: 1px solid #0f0;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+}
+.logo {
+ font-size: 24px;
+ font-weight: bold;
+}
+.status-bar {
+ display: flex;
+ gap: 20px;
+}
+.status-item {
+ display: flex;
+ align-items: center;
+}
+.status-icon {
+ width: 10px;
+ height: 10px;
+ border-radius: 50%;
+ margin-right: 5px;
+}
+.online {
+ background-color: #0f0;
+}
+.offline {
+ background-color: #f00;
+}
+/* Main Container */
+.container {
+ display: flex;
+ flex: 1;
+ overflow: hidden;
+}
+/* Sidebar */
+.sidebar {
+ width: 250px;
+ border-right: 1px solid #0f0;
+ padding: 10px;
+ overflow-y: auto;
+}
+.menu-title {
+ margin-bottom: 10px;
+ font-weight: bold;
+ text-decoration: underline;
+}
+.menu-item {
+ padding: 5px 0;
+ cursor: pointer;
+ transition: all 0.2s;
+}
+.menu-item:hover {
+ background-color: #0f0;
+ color: #000;
+}
+.menu-item.active {
+ background-color: #0f0;
+ color: #000;
+ font-weight: bold;
+}
+/* Main Content */
+.content {
+ flex: 1;
+ display: flex;
+ flex-direction: column;
+ overflow: hidden;
+}
+/* Terminal */
+.terminal {
+ flex: 1;
+ padding: 20px;
+ overflow-y: auto;
+ line-height: 1.5;
+}
+.log-entry {
+ margin-bottom: 5px;
+ word-break: break-all;
+}
+.success {
+ color: #0f0;
+}
+.error {
+ color: #f00;
+}
+.warning {
+ color: #ff0;
+}
+.info {
+ color: #0ff;
+}
+.command {
+ color: #f0f;
+}
+/* Input Area */
+.input-area {
+ padding: 10px 20px;
+ border-top: 1px solid #0f0;
+ display: flex;
+ align-items: center;
+}
+.prompt {
+ margin-right: 10px;
+ font-weight: bold;
+}
+.command-input {
+ background-color: transparent;
+ border: none;
+ color: #0f0;
+ font-family: 'Courier New', monospace;
+ flex: 1;
+ outline: none;
+ font-size: 16px;
+}
+/* Device Info Panel */
+.device-panel {
+ display: none;
+ padding: 20px;
+ flex: 1;
+ overflow-y: auto;
+}
+.device-panel.active {
+ display: block;
+}
+.device-info {
+ margin-bottom: 20px;
+}
+.info-table {
+ width: 100%;
+ border-collapse: collapse;
+}
+.info-table th, .info-table td {
+ border: 1px solid #0f0;
+ padding: 8px;
+ text-align: left;
+}
+.info-table th {
+ background-color: #0f0;
+ color: #000;
+}
+/* Partitions Panel */
+.partitions-panel {
+ display: none;
+ padding: 20px;
+ flex: 1;
+ overflow-y: auto;
+}
+.partitions-panel.active {
+ display: block;
+}
+/* Flash Panel */
+.flash-panel {
+ display: none;
+ padding: 20px;
+ flex: 1;
+ overflow-y: auto;
+}
+.flash-panel.active {
+ display: block;
+}
+.flash-form {
+ display: flex;
+ flex-direction: column;
+ gap: 15px;
+}
+.form-group {
+ display: flex;
+ flex-direction: column;
+ gap: 5px;
+}
+.form-label {
+ font-weight: bold;
+}
+.form-input {
+ background-color: #111;
+ border: 1px solid #0f0;
+ color: #0f0;
+ padding: 8px;
+ font-family: 'Courier New', monospace;
+}
+.form-button {
+ background-color: #0f0;
+ color: #000;
+ border: none;
+ padding: 10px;
+ cursor: pointer;
+ font-family: 'Courier New', monospace;
+ font-weight: bold;
+ transition: all 0.2s;
+}
+.form-button:hover {
+ background-color: #0c0;
+}
+/* Progress Bar */
+.progress-container {
+ margin-top: 20px;
+ display: none;
+}
+.progress-bar {
+ width: 100%;
+ height: 20px;
+ background-color: #111;
+ border: 1px solid #0f0;
+ position: relative;
+}
+.progress-fill {
+ height: 100%;
+ background-color: #0f0;
+ width: 0%;
+ transition: width 0.3s;
+}
+.progress-text {
+ text-align: center;
+ margin-top: 5px;
+}
+/* Tabs */
+.tabs {
+ display: flex;
+ border-bottom: 1px solid #0f0;
+}
+.tab {
+ padding: 10px 20px;
+ cursor: pointer;
+ border-right: 1px solid #0f0;
+}
+.tab.active {
+ background-color: #0f0;
+ color: #000;
+ font-weight: bold;
+}
+/* Toast Notifications */
+.toast {
+ position: fixed;
+ bottom: 20px;
+ right: 20px;
+ padding: 15px;
+ background-color: #0f0;
+ color: #000;
+ border-radius: 5px;
+ display: none;
+ z-index: 1000;
+}
+/* Responsive */
+@media (max-width: 768px) {
+ .container {
+ flex-direction: column;
+ }
+ 
+ .sidebar {
+ width: 100%;
+ border-right: none;
+ border-bottom: 1px solid #0f0;
+ max-height: 150px;
+ }
+}
